@@ -1,10 +1,8 @@
 """Flask app for adopt app."""
 
-from flask import Flask
-
+from flask import Flask, render_template, redirect, request
 from flask_debugtoolbar import DebugToolbarExtension
-
-from models import db, connect_db
+from models import db, connect_db, Pet
 
 app = Flask(__name__)
 
@@ -20,5 +18,11 @@ db.create_all()
 # however, if you want to turn it off, you can uncomment this line:
 #
 # app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
-
 toolbar = DebugToolbarExtension(app)
+
+
+@app.route("/")
+def root():
+    """homepage, will list the pets as well as name, photo, and avaliability"""
+    pets = []
+    return render_template("homepage.html", pets=pets)
