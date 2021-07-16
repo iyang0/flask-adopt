@@ -1,7 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="row">
     {% for pet in pets %}
+            <div class="col-3">
+                <h2 class="display-3">{{ pet.name }}</h2>
+                {% if pet.photo_url %}
+                    <img src="{{ pet.photo_url }}">
+                {% endif %}
+                {% if pet.avaialable %}
+                    <b>Available</b>
+                {% endif %}
+            </div>
     
     {% endfor %}
+</div>
 {% endblock %}

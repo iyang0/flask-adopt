@@ -24,5 +24,7 @@ toolbar = DebugToolbarExtension(app)
 @app.route("/")
 def root():
     """homepage, will list the pets as well as name, photo, and avaliability"""
-    pets = []
+    pets = Pet.query.all()
     return render_template("homepage.html", pets=pets)
+
+    # pets.
