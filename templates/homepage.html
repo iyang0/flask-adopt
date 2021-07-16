@@ -4,9 +4,9 @@
 <div class="row">
     {% for pet in pets %}
             <div class="col-3">
-                <h2 class="display-3">{{ pet.name }}</h2>
+                <h2 class="display-3"><a href="{{pet.id}}">{{ pet.name }}</a></h2>
                 {% if pet.photo_url %}
-                    <img src="{{ pet.photo_url }}">
+                    <img class="w-100" src="{{ pet.photo_url }}">
                 {% endif %}
                 {% if pet.available %}
                     <b>Available</b>
@@ -14,5 +14,6 @@
             </div>
     
     {% endfor %}
+    <div class="col-3"><a href="/add">New pet</a></div>
 </div>
 {% endblock %}
