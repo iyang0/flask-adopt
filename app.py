@@ -3,6 +3,7 @@
 from flask import Flask, render_template, redirect, request
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, Pet
+from forms import AddPet
 
 app = Flask(__name__)
 
@@ -27,4 +28,30 @@ def root():
     pets = Pet.query.all()
     return render_template("homepage.html", pets=pets)
 
-    # pets.
+    
+@app.route("/add", methods=["GET", "POST"])
+def pet_new_form():
+    """create a form to add a new pet to database"""
+    form = AddPet()
+    # breakpoint()
+    
+    if form.validate_on_submit():
+        
+        print("AAAAAAAAAAAAAAAAAAAA THE FORM IS ", form.name.data)
+        name = form.name.data
+        # species = form.species.data
+        # photo_url = form.photo_url.data
+        # age = form.age.data
+        # notes = form.notes.data
+        
+        # new_pet = Pet(name=name, 
+            # species=species, 
+            # photo_url=photo_url, 
+            # age=age, 
+            # notes=notes)
+        # db.session.add(new_pet)
+        # db.session.commit()
+        
+       return redirect("/") 
+    else:
+        return render_template("pet-new-form.html", form=form)
